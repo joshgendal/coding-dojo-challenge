@@ -27,31 +27,32 @@
         <div class="row">
           <div class="col-md-8" style="margin:auto;">
             <h2 class="header-txt">Add a New Show</h2>
-            <form action="">
+            <form action="/shows/add-new-show/" method="post">
+            {% csrf_token %}
               <div class="form-row">
                 <div class="col-md-12">
                   <label for="title-input">Title</label>
-                  <input type="text" class="form-control" id="title-input" />
+                  <input type="text" class="form-control" id="title-input" name="title" />
                 </div>
               </div>
               <div class="form-row sm-margin-top">
                 <div class="col-md-6">
                   <label for="network-input">Network</label>
-                  <input type="text" class="form-control" id="network-input" />
+                  <input type="text" class="form-control" id="network-input" name="network"/>
                 </div>
                 <div class="col-md-6">                  
                   <label for="date-input">Release Date</label>
-                  <input type="date" class="form-control" id="date-input" /></div>
+                  <input type="date" class="form-control" id="date-input" name="date"/>
+                </div>
               </div>
               <div class="form-row sm-margin-top">
                 <div class="col-md-12">
                   <label for="description-input">Description</label>
-                  <textarea name="description" class="form-control" id="description-input" cols="30" rows="5">
+                  <textarea name="description" class="form-control" id="description-input" cols="30" rows="5" name="description">
                   </textarea>
                   <div class="center">
                     <button id="create-btn" class="btn btn-light sm-margin-top" style="margin-top:16px;">Create</button>
                   </div>
-                  
                   {% comment %} <input type="text" class="form-control description" id="description-input" style="height: 112px"> {% endcomment %}
                 </div>
               </div>
