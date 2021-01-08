@@ -25,6 +25,3 @@ class ShowForm(forms.Form):
         'cols': '30',
         'rows': '5',
     }))
-
-
-        # fields = ['title', 'release_date', 'network', 'description']
