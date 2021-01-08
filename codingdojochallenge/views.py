@@ -53,3 +53,27 @@ def viewShow(request, show_id):
 def deleteShow(request, show_id):
     q = Shows.objects.filter(id=show_id).delete()
     return HttpResponseRedirect('/shows/')
+
+def editShow(request, show_id):
+    q = Shows.objects.get(id=show_id)
+    form = ShowForm(initial={
+        'title': q.title,
+        'show_id': q.id,
+        'date': q.release_date,
+        'network': q.network,
+        'description': q.description
+    })
+    # form = ShowForm(request.POST or None, instance = q)
+    context = {}
+    context['form'] = form
+    context['show_id'] = show_id
+    # context = {
+    #     'show': {
+    #     'title': q.title,
+    #     'show_id': q.id,
+    #     'date': q.release_date,
+    #     'network': q.network,
+    #     'description': q.description
+    #     }
+    # }
+    return render(request, 'codingdojochallenge/edit-show.html', context=context)
