@@ -25,11 +25,11 @@ def addShow(request):
             s.save()
             context = {
                 'show': {
-                'title': title,
-                'network': network,
-                'date': date,
-                'description': description,
-                'show_id': s.id
+                    'title': title,
+                    'network': network,
+                    'date': date,
+                    'description': description,
+                    'show_id': s.id
                 }
             }
             return HttpResponseRedirect(f'/shows/{s.id}')
@@ -38,7 +38,6 @@ def addShow(request):
 
 def viewShow(request, show_id):
     q = Shows.objects.get(id=show_id)
-    print('QUERY: ', q.title)
     context = {
         'show': {
             'title': q.title,
@@ -49,4 +48,39 @@ def viewShow(request, show_id):
         }
     }
     return render(request, 'codingdojochallenge/view-show.html', context=context)
-    
+
+def deleteShow(request, show_id):
+    q = Shows.objects.filter(id=show_id).delete()
+    return HttpResponseRedirect('/shows/')
+
+def editShow(request, show_id):
+    if request.method == 'POST':
+        form = ShowForm(request.POST)
+        if form.is_valid():
+            q = Shows.objects.get(id=show_id)
+            # pack vars from the edit form
+            title = form.cleaned_data['title']
+            network = form.cleaned_data['network']
+            date = form.cleaned_data['date']
+            description = form.cleaned_data['description']
+            # set new values for queried show and save
+            q.title = title
+            q.network = network
+            q.date = date
+            q.description = description
+            q.save()
+            # Send user to view show page
+            return HttpResponseRedirect(f'/shows/{show_id}')
+    else:
+        q = Shows.objects.get(id=show_id)
+        form = ShowForm(initial={
+            'title': q.title,
+            'show_id': q.id,
+            'date': q.release_date,
+            'network': q.network,
+            'description': q.description
+        })
+        context = {}
+        context['form'] = form
+        context['show_id'] = show_id
+        return render(request, 'codingdojochallenge/edit-show.html', context=context)
