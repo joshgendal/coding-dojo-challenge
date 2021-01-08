@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
 from codingdojochallenge.forms import ShowForm
 from codingdojochallenge.models import Shows
 
@@ -13,6 +14,7 @@ def index(request):
 
 def addShow(request):
     context = {}
+    errors = []
     context['form'] = ShowForm
     if request.method == 'POST':
         form = ShowForm(request.POST)
@@ -21,18 +23,27 @@ def addShow(request):
             network = form.cleaned_data['network']
             date = form.cleaned_data['date']
             description = form.cleaned_data['description']
+            # VALIDATE FORM ACCORDING TO SPECS
+            if not title or not network or not date or not description:
+                errors.append('Title must be at least 2 characters long!')
+                context['errors'] = errors
+            if len(title) < 2:
+                errors.append('Title must be at least 2 characters long!')
+            if len(network) < 3:
+                errors.append('Network must be at least 3 characters long!')
+            if len(description) < 10:
+                errors.append('Description must be at least 10 characters long!')
+            if errors:
+                context['errors'] = errors
+                return render(request, 'codingdojochallenge/add-show.html', context=context)
+            # If fields pass validation, save to db and route to view show page
             s = Shows(title=title, network=network, release_date=date, description=description)
             s.save()
-            context = {
-                'show': {
-                    'title': title,
-                    'network': network,
-                    'date': date,
-                    'description': description,
-                    'show_id': s.id
-                }
-            }
+            
             return HttpResponseRedirect(f'/shows/{s.id}')
+        else: 
+            messages.error('invalid form')
+            context['messages'] = messages
         # !!TODO: add else clause(s) for sad paths
     return render(request, 'codingdojochallenge/add-show.html', context=context)
 
