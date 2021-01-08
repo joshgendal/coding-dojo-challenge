@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New TV Shows</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="{% static 'codingdojochallenge/css/styles.css' %}"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8" style="margin:auto;">
+            <h2 class="header-txt">Add a New Show</h2>
+            <form action="/shows/add-new-show/" method="post">
+            {% csrf_token %}
+              <div class="form-row">
+                <div class="col-md-12">
+                  <label for="title-input">Title</label>
+                  {{ form.title }}
+                </div>
+              </div>
+              <div class="form-row sm-margin-top">
+                <div class="col-md-6">
+                  <label for="network-input">Network</label>
+                  {{ form.network }}
+                </div>
+                <div class="col-md-6">                  
+                  <label for="date-input">Release Date</label>
+                  {{ form.date }}
+                </div>
+              </div>
+              <div class="form-row sm-margin-top">
+                <div class="col-md-12">
+                  <label for="description-input">Description</label>
+                  {{ form.description }}
+                  </textarea>
+                  <div class="center">
+                    <button id="create-btn" class="btn btn-light sm-margin-top" style="margin-top:16px;">Create</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

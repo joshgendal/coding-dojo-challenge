@@ -1,0 +1,25 @@
+body {
+  font-family: "Inconsolata", monospace;
+}
+
+/* ===== Global Stylings ===== */
+.header-txt {
+  margin-top: 32px;
+}
+
+/* ===== New Show page styles */
+form > .sm-margin-top {
+  margin-top: 16px;
+}
+
+.center {
+  /* right: 50%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* #input-description input {
+  height: 112px;
+  padding: 10px 0;
+} */
