@@ -32,23 +32,23 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <label for="title-input">Title</label>
-                  <input type="text" class="form-control" id="title-input" name="title" />
+                  {{ form.title }}
                 </div>
               </div>
               <div class="form-row sm-margin-top">
                 <div class="col-md-6">
                   <label for="network-input">Network</label>
-                  <input type="text" class="form-control" id="network-input" name="network"/>
+                  {{ form.network }}
                 </div>
                 <div class="col-md-6">                  
                   <label for="date-input">Release Date</label>
-                  <input type="date" class="form-control" id="date-input" name="date"/>
+                  {{ form.release_date }}
                 </div>
               </div>
               <div class="form-row sm-margin-top">
                 <div class="col-md-12">
                   <label for="description-input">Description</label>
-                  <textarea name="description" class="form-control" id="description-input" cols="30" rows="5" name="description">
+                  {{ form.description }}
                   </textarea>
                   <div class="center">
                     <button id="create-btn" class="btn btn-light sm-margin-top" style="margin-top:16px;">Create</button>
