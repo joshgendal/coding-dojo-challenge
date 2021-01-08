@@ -14,6 +14,10 @@ body {
 
 /* ===== Page Stylings ===== */
 
+.delete-edit-links {
+  text-decoration: underline;
+}
+
 form > .sm-margin-top {
   margin-top: 16px;
 }
