@@ -47,3 +47,7 @@ h4#show-info {
   height: 112px;
   padding: 10px 0;
 } */
+
+.error-txt {
+  color: red;
+}
