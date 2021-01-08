@@ -3,6 +3,14 @@ from django.http import HttpResponse
 from codingdojochallenge.forms import ShowForm
 from codingdojochallenge.models import Shows
 
+
+def index(request):
+    # query db for all Shows
+    shows = Shows.objects.all()
+    context = {}
+    context['shows'] = shows
+    return render(request, 'codingdojochallenge/all-shows.html', context=context)
+
 def addShow(request):
     context = {}
     context['form'] = ShowForm
