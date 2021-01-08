@@ -10,13 +10,8 @@ def addShow(request):
 
 def addNewShow(request):
     if request.method == 'POST':
-        # title = request.POST.get('title')
-        # network = request.POST.get('network')
-        # date = request.POST.get('date')
-        # description = request.POST.get('description')
         form = ShowForm(request.POST)
         if form.is_valid():
-            # show_obj = form.save()
             title = form.cleaned_data['title']
             network = form.cleaned_data['network']
             date = form.cleaned_data['date']
@@ -24,6 +19,4 @@ def addNewShow(request):
             s = Shows(title=title, network=network, release_date=date, description=description)
             s.save()
             print('GETS AFTER SAVE', title, network, date, description)
-            # show_obj.save()
-        # print(title, network, date, description)
     return HttpResponse('did it work?s')
