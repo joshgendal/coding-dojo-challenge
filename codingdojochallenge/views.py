@@ -49,4 +49,7 @@ def viewShow(request, show_id):
         }
     }
     return render(request, 'codingdojochallenge/view-show.html', context=context)
-    
+
+def deleteShow(request, show_id):
+    q = Shows.objects.filter(id=show_id).delete()
+    return HttpResponseRedirect('/shows/')
