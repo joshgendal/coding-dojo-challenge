@@ -31,8 +31,14 @@
           <h4>Network: {{ show.network }}</h4>
           <h4>Release Date: {{ show.date }}</h4>
           <h4>Description: {{ show.description }}</h4>
+          <div style="float:right;">
+            <a href="/shows/{{ show.show_id }}/edit" class="delete-edit-links">Edit |</a>
+            <a href="/shows/{{ show.show_id }}/destroy" class="delete-edit-links">Delete</a>
+          </div>
+          
         </div>
       </div>
     </div>
+
   </body>
 </html>
