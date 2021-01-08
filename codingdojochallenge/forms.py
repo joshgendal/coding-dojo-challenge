@@ -7,7 +7,7 @@ class ShowForm(forms.Form):
         'name': 'title',
         'id': 'title-input'
     }))
-    release_date = forms.DateField(widget=forms.DateInput(attrs={
+    date = forms.DateField(widget=forms.DateInput(attrs={
         'class': 'form-control',
         'id': 'date-input',
         'name': 'date',
@@ -15,8 +15,8 @@ class ShowForm(forms.Form):
     }))
     network = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
-        'id': 'date-input',
-        'name': 'date',
+        'id': 'network-input',
+        'name': 'network',
     }))
     description = forms.CharField(widget=forms.Textarea(attrs={
         'class': 'form-control description',
